@@ -1,7 +1,7 @@
 export const test =  (req,res) =>
 {
     res.json({
-        message:"ApI is working!",
+        message:"API is working!",
     });
 };
 
