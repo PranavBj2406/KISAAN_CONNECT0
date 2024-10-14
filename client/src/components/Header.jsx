@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../assets/Icon1.png';
+import Govt from '../assets/Icon1.png';
 import {Link} from 'react-router-dom';
 
 export default function Header() {
@@ -7,7 +7,7 @@ export default function Header() {
     <div className='bg-white'>
       <div className='flex justify-between items-center mx-auto p-5'>
         <Link to ="/">
-      <img src={logo} alt="Ministry of Agriculutre" style={{width: "175px" ,padding:"5px"}}/>
+      <img src={Govt} alt="Ministry of Agriculutre" style={{width: "175px" ,padding:"5px"}}/>
         </Link>
       <ul className='flex gap-4 font-semibold '>
         <Link to ="/">
