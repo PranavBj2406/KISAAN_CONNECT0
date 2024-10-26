@@ -21,11 +21,6 @@ export default function Header() {
               </li>
             </Link>
 
-            <Link to="/About">
-              <li className="relative hover:text-lime-500 hover:after:content-['•'] hover:after:absolute hover:after:bottom-[-10px] hover:after:left-1/2 hover:after:-translate-x-1/2 hover:after:text-lg hover:after:leading-none">
-                About
-              </li>
-            </Link>
             <Link to="/signin">
               <li className="relative hover:text-lime-500 hover:after:content-['•'] hover:after:absolute hover:after:bottom-[-10px] hover:after:left-1/2 hover:after:-translate-x-1/2 hover:after:text-lg hover:after:leading-none">
                 SignIn
@@ -34,6 +29,11 @@ export default function Header() {
             <Link to="/signup">
               <li className="relative hover:text-lime-500 hover:after:content-['•'] hover:after:absolute hover:after:bottom-[-10px] hover:after:left-1/2 hover:after:-translate-x-1/2 hover:after:text-lg hover:after:leading-none">
                 SignUp
+              </li>
+            </Link>
+            <Link to="/About">
+              <li className="relative hover:text-lime-500 hover:after:content-['•'] hover:after:absolute hover:after:bottom-[-10px] hover:after:left-1/2 hover:after:-translate-x-1/2 hover:after:text-lg hover:after:leading-none">
+                About
               </li>
             </Link>
             <Link to="/contactus">
