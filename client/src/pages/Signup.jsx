@@ -12,10 +12,12 @@ import { FaLeaf } from "react-icons/fa6";
 import { BsBank } from "react-icons/bs";
 import { TbCashBanknote } from "react-icons/tb";
 import { SlCompass } from "react-icons/sl";
-import { HiReceiptTax } from "react-icons/hi";
 import farmer from "../assets/farmer.jpg";
+import { HiReceiptTax } from "react-icons/hi";
+import { FaKey } from "react-icons/fa";
 import "./signup.css";
 import { Link } from "react-router-dom";
+
 
 export default function Signup() 
 {
@@ -37,7 +39,8 @@ export default function Signup()
       gender: formData.gender,
       occupation: formData.occupation,
       bankAccNumber: formData.bankAccNumber,
-      ifscNumber: formData.ifscNumber
+      ifscNumber: formData.ifscNumber,
+      password:formData.password
     };
   
     // Add occupation-specific fields
@@ -65,12 +68,12 @@ export default function Signup()
       console.log(data);
       
       if (!res.ok) {
-        alert(data.message || 'Error in registration');
+        alert(data.message || 'Error in registration ');
         setLoading(false);
         return;
       }
       
-      alert('Registration successful!');
+      alert('Registration successful Welcome to kissan connect!');
       setLoading(false);
     } catch (error) {
       alert('Error in registration');
@@ -99,7 +102,7 @@ export default function Signup()
         />
       </div>
       <h1 className="text-xs font-medium font-poppins text-gray-400 pl-8 ml-8 mt-5">
-        Crops growm*
+        Crops grown*
       </h1>
       <div className="relative w-full md:w-1/2 lg:w-1/3 ml-16 mt-4">
         <FaLeaf className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray" />
@@ -306,12 +309,29 @@ export default function Signup()
                 onChange={handleChange}
               />
             </div>
+            <h1 className="text-xs font-medium font-poppins text-gray-400 pl-8 ml-8 mt-5">
+              Password*
+            </h1>
+            <div className="relative w-full md:w-1/2 lg:w-1/3 ml-16 mt-4">
+              <FaKey className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray" />
+              <input
+                className="w-full text-xs font-medium font-poppins placeholder-gray-800 pl-10 pr-3 py-2 border-b-2 border-black focus:border-black focus:outline-none"
+                type="password"
+                id="password"
+                placeholder="Enter Password"
+                onChange={handleChange}
+              />
+            </div>
+
+          
+
             <button disabled={loading}
             onClick={handleSubmit}
               className="shadow-2xl transtion duration-500 ease-in-out text-1xl font-medium font-poppins text-white text-center w-full md:w-1/2 lg:w-1/3 pl-8 pr-3 py-2 ml-16 mt-5 border border-none rounded-3xl bg-lime-500 focus:outline-none focus:ring-2 focus:ring-lime-300 focus:ring-opacity-100 
             active:bg-lime-600"
               type="button"
             >
+              
               {loading ? 'Registering...':'Register'}
             </button>
 

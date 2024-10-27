@@ -80,6 +80,10 @@ const userSchema = new mongoose.Schema({
     ifscNumber:{
         type:String,
         required:true,
+    },
+    password:{
+        type:String,
+        required:true,
     }
 
    
