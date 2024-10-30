@@ -15,7 +15,7 @@ import { SlCompass } from "react-icons/sl";
 import farmer from "../assets/farmer.jpg";
 import { HiReceiptTax } from "react-icons/hi";
 import { FaKey } from "react-icons/fa";
-import "./signup.css";
+import styles from "./signup.module.css";
 import { Link } from "react-router-dom";
 
 
@@ -172,10 +172,10 @@ export default function Signup()
           />
         </div>
         <div className="Input">
-          <h1 className="text-2xl font-medium font-poppins text-gray-800 pl-8 ml-8 -mt-4">
+          <h1 className="text-3xl font-semibold font-poppins text-lime-800 pl-8 ml-8 -mt-4">
             User Details
           </h1>
-          <h1 className="text-1xl font-medium font-poppins text-gray-700 pl-8 pr-8 ml-8 mt-5">
+          <h1 className="text-1xl font-semibold font-poppins text-lime-600 pl-8 pr-8 ml-8 mt-5">
             Fill Up Details
           </h1>
         </div>
@@ -190,7 +190,7 @@ export default function Signup()
                 className="w-full text-xs font-medium font-poppins placeholder-gray-800 pl-10 pr-3 py-2 border-b-2 border-black focus:border-black focus:outline-none"
                 type="text"
                 id="username"
-                placeholder="Enter Username"
+                placeholder="Enter your Username"
                 onChange={handleChange}
               />
             </div>
@@ -203,7 +203,7 @@ export default function Signup()
                 className="w-full text-xs font-medium font-poppins placeholder-gray-800 pl-10 pr-3 py-2 border-b-2 border-black focus:border-black focus:outline-none"
                 type="text"
                 id="aadharCard" // Ensure this ID is unique
-                placeholder="Enter Aadhar Card"
+                placeholder="Enter Aadhar Card ID"
                 onChange={handleChange}
               />
             </div>
@@ -342,7 +342,7 @@ export default function Signup()
               </Link>
             </div>
             {/* image alignment */}
-            <div className="image-container">
+            <div className={styles["image-container"]}>
               {/* <img src={picsart} alt="picsart" classname="w-full h-full rounded-tl-lg  object-center object-cover "> */}
               <img
                 src={farmer}
