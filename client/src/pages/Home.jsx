@@ -13,7 +13,7 @@ import fcon10 from "../assets/Group710.png";
 import fcon11 from "../assets/Group3711.png";
 import fcon12 from "../assets/Maskgroup.png";
 import fcon13 from "../assets/Group3736.png";
-import Logo1 from "../assets/holy.jpg";
+import vector from "../assets/Vector.svg"
 
 export default function Home() {
   return (
@@ -30,10 +30,14 @@ export default function Home() {
         {" "}
         Seeding Success{" "}
       </h1>
+       
+       <div className="flex flex-row justify-center items-center text-center">
       <h1 className="text-center text-6xl  font-montserrat font-[700]">
         {" "}
         Cultivating Trust{" "}
       </h1>
+      <img src={vector} alt='' className="absolute h-[200px] w-[300px] ml-[340px]"></img>
+       </div>
 
       <div className="flex flex-row ">
         {/* image container */}
