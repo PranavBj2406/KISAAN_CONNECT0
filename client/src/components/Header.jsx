@@ -16,28 +16,28 @@ export default function Header() {
         <div>
           <ul className="flex gap-7 font-semibold font-poppins justify-end pr-9">
             <Link to="/">
-              <li className="relative hover:text-lime-500 hover:after:content-['•'] hover:after:absolute hover:after:bottom-[-10px] hover:after:left-1/2 hover:after:-translate-x-1/2 hover:after:text-lg hover:after:leading-none">
+              <li className="relative  hover:text-lime-500 duration-300 hover:after:content-['•'] hover:after:absolute hover:after:bottom-[-10px] hover:after:left-1/2 hover:after:-translate-x-1/2 hover:after:text-lg hover:after:leading-none">
                 Home
               </li>
             </Link>
 
             <Link to="/signin">
-              <li className="relative hover:text-lime-500 hover:after:content-['•'] hover:after:absolute hover:after:bottom-[-10px] hover:after:left-1/2 hover:after:-translate-x-1/2 hover:after:text-lg hover:after:leading-none">
+              <li className="relative hover:text-lime-500 duration-300 hover:after:content-['•'] hover:after:absolute hover:after:bottom-[-10px] hover:after:left-1/2 hover:after:-translate-x-1/2 hover:after:text-lg hover:after:leading-none">
                 SignIn
               </li>
             </Link>
             <Link to="/signup">
-              <li className="relative hover:text-lime-500 hover:after:content-['•'] hover:after:absolute hover:after:bottom-[-10px] hover:after:left-1/2 hover:after:-translate-x-1/2 hover:after:text-lg hover:after:leading-none">
+              <li className="relative hover:text-lime-500 duration-300 hover:after:content-['•'] hover:after:absolute hover:after:bottom-[-10px] hover:after:left-1/2 hover:after:-translate-x-1/2 hover:after:text-lg hover:after:leading-none">
                 SignUp
               </li>
             </Link>
             <Link to="/About">
-              <li className="relative hover:text-lime-500 hover:after:content-['•'] hover:after:absolute hover:after:bottom-[-10px] hover:after:left-1/2 hover:after:-translate-x-1/2 hover:after:text-lg hover:after:leading-none">
+              <li className="relative hover:text-lime-500 duration-300 hover:after:content-['•'] hover:after:absolute hover:after:bottom-[-10px] hover:after:left-1/2 hover:after:-translate-x-1/2 hover:after:text-lg hover:after:leading-none">
                 About
               </li>
             </Link>
             <Link to="/contactus">
-              <li className="relative hover:text-lime-500 hover:after:content-['•'] hover:after:absolute hover:after:bottom-[-10px] hover:after:left-1/2 hover:after:-translate-x-1/2 hover:after:text-lg hover:after:leading-none">
+              <li className="relative hover:text-lime-500 duration-300 hover:after:content-['•'] hover:after:absolute hover:after:bottom-[-10px] hover:after:left-1/2 hover:after:-translate-x-1/2 hover:after:text-lg hover:after:leading-none">
                 ContactUs
               </li>
             </Link>
