@@ -14,7 +14,7 @@ export default function Header() {
           />
         </Link>
         <div>
-          <ul className="flex gap-7 font-semibold font-poppins justify-end pr-9">
+          <ul className="flex gap-7 font-semibold font-poppins justify-end pr-9 text-[17px]">
             <Link to="/">
               <li className="relative  hover:text-lime-500 duration-300 hover:after:content-['•'] hover:after:absolute hover:after:bottom-[-10px] hover:after:left-1/2 hover:after:-translate-x-1/2 hover:after:text-lg hover:after:leading-none">
                 Home

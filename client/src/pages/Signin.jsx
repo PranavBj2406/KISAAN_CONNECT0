@@ -124,6 +124,7 @@ export default function Signin() {
           className="w-full h-full rounded-[19px] mt-12 object-center object-cover"
         />
       </div>
+      
     </div>
   );
 }

@@ -14,6 +14,7 @@ import fcon11 from "../assets/Group3711.png";
 import fcon12 from "../assets/Maskgroup.png";
 import fcon13 from "../assets/Group3736.png";
 import vector from "../assets/Vector.svg"
+import border from "../assets/border.png"
 
 export default function Home() {
   return (
@@ -217,16 +218,18 @@ export default function Home() {
         </div>
       </div>
 
-      <h1 className="font-montserrat text-3xl font-semibold text-center mt-12">
+      <h1 className="font-montserrat text-3xl font-semibold text-center mt-[70px]">
         Use our Platform and Connect yourself
       </h1>
-      <div className="flex justify-center items-start mt-20 pt-5">
+      <div className="flex justify-center items-start mt-10 pt-5">
         <Link to="/signin">
           <button className="relative bottom-6 transition duration-300 ease-in-out bg-green-800 hover:bg-lime-600 transform hover:-translate-x-1 hover:scale-110  border border-b-2 w-[200px] h-[40px] rounded-md border-none  text-white font-[500] shadow-2xl shadow-black">
             CONNECT
           </button>
         </Link>
       </div>
+      <img src={border} alt='' className="w-full h-[60px]">
+      </img>
     </div>
   );
 }

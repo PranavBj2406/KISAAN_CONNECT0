@@ -1,5 +1,5 @@
 import React from "react";
-import emp from "../assets/emp.jpeg";
+import border from "../assets/border.png"
 import vec from "../assets/Vector.svg";
 
 export default function About() {
@@ -127,6 +127,7 @@ export default function About() {
           </div>
         </div>
       </div>
+      <img src={border} alt='' className="w-full h-[40px]"></img>
     </div>
   );
 }
