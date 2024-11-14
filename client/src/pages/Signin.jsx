@@ -5,15 +5,19 @@ import klogo from "../assets/icon.jpg";
 import styles from "./signin.module.css";
 import { useEffect } from "react";
 import A from "../assets/aadhar.svg"
+import { signInStart,signInSuccess,signInFailure } from "../redux/user/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+
+
 
 export default function Signin() {
   useEffect(() => {
     sessionStorage.clear();
   }, []);
   const [formData, setFormData] = useState({});
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const {loading,error} = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -22,8 +26,7 @@ export default function Signin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setLoading(true);
-      setError(false);
+      dispatch(signInStart());
       const res = await fetch("/api/auth/signin", {
         method: "POST",
         headers: {
@@ -32,9 +35,9 @@ export default function Signin() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      setLoading(false);
+      dispatch(signInSuccess(data));
       if (data.success === false) {
-        setError(true);
+        dispatch(signInFailure(data));
         return;
       }
 
@@ -42,8 +45,7 @@ export default function Signin() {
 
       navigate("/dashboard");
     } catch (error) {
-      setLoading(false);
-      setError(true);
+     dispatch(signInFailure(error));
     }
   };
 
@@ -110,9 +112,9 @@ export default function Signin() {
             <span className="text-blue-500 ">Sign up</span>
           </Link>
         </div>
-        {error && (
-          <p className="text-red-700 mt-5 text-center">Something went wrong!</p>
-        )}
+        <p className='text-red-700 mt-5 text-center'>
+        {error ? error.message || 'Something went wrong!' : ''}
+      </p>
       </div>
 
       
