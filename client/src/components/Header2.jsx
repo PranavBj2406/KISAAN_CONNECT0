@@ -1,12 +1,12 @@
 import React from "react";
 import KissanConnect from "../assets/icon 2.jpg";
 import { Link } from "react-router-dom";
-
+ 
 export default function Header() {
   return (
     <div className="bg-white shadow-xl">
       <div className="flex justify-between items-center mx-auto p-5">
-        <Link to="/">
+        <Link to="/dashboard">
           <img
             src={KissanConnect}
             alt="kissanConnect"

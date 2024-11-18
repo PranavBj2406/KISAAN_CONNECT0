@@ -53,7 +53,7 @@ export default function About() {
 
         <div className="pt-10 mt-12">
           <span className="w-1/2 ml-20 mt-15 text-3xl font-semibold font-serif text-emerald-600">
-            Team Members :
+          Project Contributors :
           </span>
         </div>
 
@@ -67,18 +67,6 @@ export default function About() {
             <h1 className="text-2xl font-mono text-emerald-700 text-start">Pranav BJ</h1>
             <p className="font-medium font-mono mt-3">Hi i am Pranav Bj currently pursuing 3rd year B.E in CSD,AIT.If you want to connect to me down below's link</p>
             <a href="https://www.linkedin.com/in/pranav-bj-545a1b260/" className="font-mono text-blue-800 font-medium">LinkedIn</a>
-          </div>
-          </div>
-
-
-          <div className="flex flex-row border-none rounded-md shadow-xl w-[1000px] h-[200px] ml-20 justify-center items-center gap-[300px] mt-7">
-          <div className="w-1/4 text-end">
-          IMG
-          </div>
-          <div className="w-3/4 ">
-            <h1 className="text-2xl font-mono text-emerald-700 text-start">Tanishq Pratap</h1>
-            <p className="font-medium font-mono mt-3">Hi i am Tanishq Pratap currently pursuing 3rd year B.E in CSD,AIT.If you want to connect to me down below's link</p>
-            <a href="" className="font-mono text-blue-800">LinkedIn</a>
           </div>
           </div>
 
@@ -98,33 +86,12 @@ export default function About() {
           IMG
           </div>
           <div className="w-3/4 ">
-            <h1 className="text-2xl font-mono text-emerald-700 text-start">Subhadeep Das</h1>
+            <h1 className="text-2xl font-mono text-emerald-700 text-start">Eshwar Roy</h1>
             <p className="font-medium font-mono mt-3">Hi i am Shubhadeep Das currently pursuing 3rd year B.E in CSD,AIT.If you want to connect to me down below's link</p>
             <a href="" className="font-mono text-blue-800">LinkedIn</a>
           </div>
           </div>
-
-          <div className="flex flex-row border-none rounded-md shadow-xl w-[1000px] h-[200px] ml-20 justify-center items-center gap-[300px] mt-7">
-          <div className="w-1/4 text-end">
-          IMG
-          </div>
-          <div className="w-3/4 ">
-            <h1 className="text-2xl font-mono text-emerald-700 text-start">Likitha A</h1>
-            <p className="font-medium font-mono mt-3">Hi i am Likitha A currently pursuing 3rd year B.E in CSE,AIT.If you want to connect to me down below's link</p>
-            <a href="" className="font-mono text-blue-800">LinkedIn</a>
-          </div>
-          </div>
-
-          <div className="flex flex-row border-none rounded-md shadow-xl w-[1000px] h-[200px] ml-20 justify-center items-center gap-[300px] mt-7">
-          <div className="w-1/4 text-end">
-          IMG
-          </div>
-          <div className="w-3/4 ">
-            <h1 className="text-2xl font-mono text-emerald-700 text-start">Vaibhav Vaswani</h1>
-            <p className="font-medium font-mono mt-3">Hi i am Vaibhav Vaswani currently pursuing 2nd year B.E in CSE,AIT.If you want to connect to me down below's link</p>
-            <a href="" className="font-mono text-blue-800">LinkedIn</a>
-          </div>
-          </div>
+          
         </div>
       </div>
       <img src={border} alt='' className="w-full h-[40px]"></img>
