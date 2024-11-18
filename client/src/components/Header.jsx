@@ -38,11 +38,7 @@ export default function Header() {
                 About
               </li>
             </Link>
-            <Link to="/contactus">
-              <li className="relative hover:text-lime-500 duration-300 hover:after:content-['•'] hover:after:absolute hover:after:bottom-[-10px] hover:after:left-1/2 hover:after:-translate-x-1/2 hover:after:text-lg hover:after:leading-none">
-                ContactUs
-              </li>
-            </Link>
+        
           </ul>
         </div>
       </div>

@@ -12,14 +12,27 @@ import 'typeface-poppins';
 import Dashboard from "./pages/Dashboard";
 import PrivateRoutes from "./components/PrivateRoutes";
 
+const header2Routes = [
+  "/dashboard",
+  "/contactus",
+  // Add future routes here
+  // You can also use pattern matching if needed
+  // "/admin/*",    // Example: all admin routes
+  // "/settings/*"  // Example: all settings routes
+];
+
 function AppContent() {
   const location = useLocation(); // Correct use of useLocation
 
-  const isDashboardRoute = location.pathname.startsWith("/dashboard");
+  const showHeader2 = header2Routes.some(route => 
+    route.endsWith('*') 
+      ? location.pathname.startsWith(route.replace('*', ''))
+      : location.pathname === route
+  );
 
   return (
     <>
-      {!isDashboardRoute ? <Header /> : <Header2 />}
+      {!showHeader2 ? <Header /> : <Header2 />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
