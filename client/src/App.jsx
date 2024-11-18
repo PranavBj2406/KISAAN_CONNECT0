@@ -10,6 +10,7 @@ import Header2 from "./components/Header2";
 import ContactUs from "./pages/Contactus";
 import 'typeface-poppins';
 import Dashboard from "./pages/Dashboard";
+import PrivateRoutes from "./components/PrivateRoutes";
 
 function AppContent() {
   const location = useLocation(); // Correct use of useLocation
@@ -26,7 +27,9 @@ function AppContent() {
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/contactus" element={<ContactUs />} />
+        <Route element={<PrivateRoutes/>}>
         <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
       </Routes>
     </>
   );
