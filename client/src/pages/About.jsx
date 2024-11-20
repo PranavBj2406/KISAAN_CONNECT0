@@ -100,7 +100,7 @@ export default function About() {
                 Subhadeep Das
               </h1>
               <p className="font-medium font-mono mt-3">
-                Hi i am Shubhadeep Das currently pursuing 3rd year B.E in
+                Hi i am Dasari Ranga Eshwar currently pursuing 3rd year B.E in
                 CSD,AIT.If you want to connect to me down below's link
               </p>
               <a href="" className="font-mono text-blue-800">
