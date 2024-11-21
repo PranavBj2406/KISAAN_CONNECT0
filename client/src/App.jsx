@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Outlet } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Profile from "./pages/Profile";
@@ -11,6 +11,8 @@ import ContactUs from "./pages/Contactus";
 import 'typeface-poppins';
 import Dashboard from "./pages/Dashboard";
 import PrivateRoutes from "./components/PrivateRoutes";
+import SideBar from "./components/SideBar";
+ 
 
 const header2Routes = [
   "/dashboard",
@@ -20,6 +22,17 @@ const header2Routes = [
   // "/admin/*",    // Example: all admin routes
   // "/settings/*"  // Example: all settings routes
 ];
+
+function ProtectedLayout(){
+  return(
+    <div className="flex">
+      <SideBar/>
+      <div>
+      <Outlet/>
+      </div>
+    </div>
+  )
+}
 
 function AppContent() {
   const location = useLocation(); // Correct use of useLocation
@@ -31,7 +44,7 @@ function AppContent() {
   );
 
   return (
-    <>
+    <div>
       {!showHeader2 ? <Header /> : <Header2 />}
       <Routes>
         <Route path="/" element={<Home />} />
@@ -39,12 +52,16 @@ function AppContent() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/contactus" element={<ContactUs />} />
+
+        
         <Route element={<PrivateRoutes/>}>
+        <Route element={<ProtectedLayout/>}>
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/contactus" element={<ContactUs />} />
+        </Route>
         </Route>
       </Routes>
-    </>
+    </div>
   );
 }
 
