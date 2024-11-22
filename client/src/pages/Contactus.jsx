@@ -13,11 +13,7 @@ export default function ContactUs() {
           <h1 className="font-montserrat font-bold text-7xl text-center ">
             Contact Us
           </h1>
-          <img
-            src={vector}
-            alt="vec"
-            className="w-[300px] h-[300px] absolute left-[50px]"
-          ></img>
+         
         </div>
         <div className='flex items-center ml-[100px]'>
         <img src={care} alt="" className='w-[400px] h-[150px] absolute right-[310px]'></img>

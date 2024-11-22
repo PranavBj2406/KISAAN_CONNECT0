@@ -12,7 +12,7 @@ import 'typeface-poppins';
 import Dashboard from "./pages/Dashboard";
 import PrivateRoutes from "./components/PrivateRoutes";
 import SideBar from "./components/SideBar";
- 
+ import { SideBarProvider } from "./components/SideBar";
 
 const header2Routes = [
   "/dashboard",
@@ -27,7 +27,7 @@ function ProtectedLayout(){
   return(
     <div className="flex">
       <SideBar/>
-      <div>
+      <div className="flex-1">
       <Outlet/>
       </div>
     </div>
@@ -68,7 +68,9 @@ function AppContent() {
 export default function App() {
   return (
     <BrowserRouter>
+      <SideBarProvider>
       <AppContent />
+      </SideBarProvider>
     </BrowserRouter>
   );
 }
