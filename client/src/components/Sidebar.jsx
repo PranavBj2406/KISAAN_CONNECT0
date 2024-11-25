@@ -24,15 +24,16 @@ export default function SideBar({ children }) {
         {/* top overview and button section */}
         <div className="p-6 pb-2 flex justify-between items-center border-b-2 shadow-md h-20">
           <span
-            className={`font-sans text-lg font-semibold relative left-2 text-lime-700 overflow-hidden  transition-all ${
-              expanded ? "w-32" : "w-0"
+            className={`font-sans text-lg font-semibold relative left-2 text-lime-700 overflow-hidden  transition-all  ${
+              expanded ? "w-32" : "w-0 duration-300"
             }`}
           >
             Overview
           </span>
+
           <button
             onClick={() => setExpanded((curr) => !curr)}
-            className="relative left-[35px] bg-slate-50 hover:bg-lime-600 hover:text-white rounded-full"
+            className="transisition-all relative left-[35px] bg-slate-50 hover:duration-200  hover:bg-lime-600 hover:text-white rounded-full hover:scale-105 "
           >
             {expanded ? <CircleChevronLeft /> : <CircleChevronRight />}
           </button>
@@ -62,7 +63,11 @@ export default function SideBar({ children }) {
               <h4 className="font-semibold">xyz</h4>
               <span className="text-xs text-gray-600">xyz@gmail.com</span>
             </div>
+            <div className="border rounded-full ">
+            <Link to='/profile'>
             <MoreVertical size={20} className="relative left-2" />
+            </Link>
+            </div>
           </div>
         </div>
       </nav>

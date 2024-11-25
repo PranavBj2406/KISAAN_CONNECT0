@@ -65,7 +65,7 @@ export default function ContactUs() {
           </button>
         </Link>
       </div>
-        <img src={border} alt='' className="w-full h-[50px]"></img>
+        <img src={border} alt='' className="w-full h-[50px] mt-5"></img>
     </div>
   );
 }
