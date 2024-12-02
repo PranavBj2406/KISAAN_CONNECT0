@@ -13,8 +13,8 @@ export const test =  (req,res) =>
 // Fetch user by ID
 export const getUserByAadharCard = async (req, res) => {
     try {
-        const { aadharCard } = req.params;  // Get the user ID from the route parameter
-        const user = await User.findOne(aadharCard);  // Query the database for the user by ID
+        const { aadharID } = req.params;  // Get the aadhar ID from the route parameter
+        const user = await User.findOne({ aadharCard: aadharID }); 
 
         if (!user) {
             return res.status(404).json({ message: "User not found" });  // If no user is found, send an error
