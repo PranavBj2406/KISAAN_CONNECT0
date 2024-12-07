@@ -63,7 +63,7 @@ export default function SideBar({ children }) {
               <h4 className="font-semibold">xyz</h4>
               <span className="text-xs text-gray-600">xyz@gmail.com</span>
             </div>
-            <div className="border rounded-full ">
+            <div className="border-none ">
             <Link to='/profile'>
             <MoreVertical size={20} className="relative left-2" />
             </Link>
