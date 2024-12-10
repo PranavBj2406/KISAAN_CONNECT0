@@ -14,10 +14,7 @@ export default function ContactUs() {
             Contact Us
           </h1>
          
-        </div>
-        <div className='flex items-center ml-[100px]'>
-        <img src={care} alt="" className='w-[400px] h-[150px] absolute right-[310px]'></img>
-      </div>
+        </div>        
       </div>
 
       <div className="flex flex-row">
@@ -43,17 +40,17 @@ export default function ContactUs() {
         </div>
 
         <div className="ml-[60px] mt-20 w-1/2">
-          <h1 className="font-medium text-base mt-5">Full Name</h1>
+          <h1 className="font-medium text-base mt-5">Subject</h1>
           <input
             type="text"
-            placeholder="kisaan"
+            placeholder="XYZ"
             className="p-3 rounded-lg border border-none shadow-md bg-slate-200 focus:outline-none focus:ring-2 focus:ring-slate-100 text-base mt-3 w-3/4 "
           ></input>
           <h1 className="font-medium text-base mt-10">Issue</h1>
           <input
             type="text"
-            placeholder="kisaan@email.com"
-            className="p-3 rounded-lg border border-none shadow-md bg-slate-200 focus:outline-none focus:ring-2 focus:ring-slate-100 text-base mt-3 w-3/4 h-[179px] text-top"
+            placeholder="i am facing this problem"
+            className="p-3 rounded-lg border border-none shadow-md bg-slate-200 focus:outline-none focus:ring-2 focus:ring-slate-100  mt-3 w-3/4 h-[179px] "
           ></input>
         </div>
       </div>
