@@ -57,6 +57,11 @@ const userSchema = new mongoose.Schema({
         {
             type:[String],
             required: function(){return this.occupation === 'Farmer';}
+        },
+        farmImage:
+        {
+            type:String,
+            default: "" // This will store the Firebase Storage URL
         }
     },
     buyerDetails:{
@@ -69,7 +74,10 @@ const userSchema = new mongoose.Schema({
             type:String,
             required:function() {return this.occupation === 'Buyer';}  
         },
-
+        companyImage:{
+            type:String,
+            default: "" // This will store the Firebase Storage URL
+        }
     },
 
     bankAccNumber:{
@@ -84,9 +92,11 @@ const userSchema = new mongoose.Schema({
     password:{
         type:String,
         required:true,
+    },
+    profilePicture:{
+        type:String,
+        default: "" // This will store the Firebase Storage URL
     }
-
-   
 },{timestamps:true});
 
 const User = mongoose.model('User',userSchema);

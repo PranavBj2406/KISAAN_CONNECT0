@@ -76,8 +76,74 @@ export default function UserProfile() {
 
     if (userDetails.occupation === "Buyer") {
       return (
-        <div className="mt-10 p-6 w-11/12 mx-auto shadow-md ">
-          <p className="font-bold text-3xl mb-5">Buyer Details 🛒</p>
+        <div className="border-none mt-10 p-6 w-11/12 mx-auto shadow-lg rounded-lg hover:shadow-lime-600 duration-700">
+          <span className="font-bold text-3xl mb-5">Buyer Details 🛒</span>
+
+          <div className="flex flex-row space-x-6">
+            {/* Left Side - Details */}
+            <div className="flex-1 flex flex-col space-y-6">
+              <div className="flex flex-col mt-[50px]">
+                <span className="font-semibold text-lg mb-3">
+                  Address Details:
+                </span>
+                <p className="font-medium text-md border-none bg-slate-50 h-[50px] flex justify-start pl-2 items-center rounded-md hover:bg-lime-600 hover:text-white duration-500">
+                  {userDetails.address}
+                </p>
+              </div>
+              <div className="flex flex-col">
+                <span className="font-semibold text-lg mb-3">GST Number :</span>
+                <p className="font-medium text-md border-none bg-slate-50 h-[50px] flex justify-start pl-2 items-center rounded-md hover:bg-lime-600 hover:text-white duration-500">
+                  {userDetails?.buyerDetails?.gstNumber}
+                </p>
+              </div>
+              <div className="flex flex-col">
+                <span className="font-semibold text-lg mb-3">Buyer Type :</span>
+                <p className="font-medium text-md border-none bg-slate-50 h-[50px] flex justify-start pl-2 items-center rounded-md hover:bg-lime-600 hover:text-white duration-500">
+                  {userDetails?.buyerDetails?.buyerType}
+                </p>
+              </div>
+
+              <div className="flex flex-row gap-8">
+                <div>
+                  <button className="border-none bg-red-600 h-[50px] w-[150px] text-lg font-semibold text-white rounded-md hover:bg-red-400 duration-700">
+                    Sign out
+                  </button>
+                </div>
+                <div>
+                  <button className="border-none bg-green-600 h-[50px] w-[150px] text-lg font-semibold text-white rounded-md hover:opacity-80 duration-700 ">
+                    Update Profile
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Side - Image */}
+            <div className="flex-1">
+              <div className="w-full h-[400px] rounded-lg overflow-hidden shadow-lg">
+                {userDetails?.farmerDetails?.landImage ? (
+                  <img
+                    src={userDetails.farmerDetails.landImage}
+                    alt="Farm Land"
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-slate-200 flex items-center justify-center">
+                    No Image Available
+                  </div>
+                )}
+              </div>
+
+              <div className="flex flex-row">
+                <div>
+                  <button className="border-none h-[50px] w-[200px] bg-slate-300 mt-6 rounded-lg font-semibold text-lg ">
+                    Upload Images
+                  </button>
+                </div>
+
+                <input type="file"></input>
+              </div>
+            </div>
+          </div>
         </div>
       );
     }
@@ -86,7 +152,7 @@ export default function UserProfile() {
       return (
         <div className="border-none mt-10 p-6 w-11/12 mx-auto shadow-lg rounded-lg hover:shadow-lime-600 duration-700">
           <span className="font-bold text-3xl mb-5">Farmer Details 🧑🏻‍🌾</span>
-    
+
           <div className="flex flex-row space-x-6">
             {/* Left Side - Details */}
             <div className="flex-1 flex flex-col space-y-6">
@@ -99,9 +165,7 @@ export default function UserProfile() {
                 </p>
               </div>
               <div className="flex flex-col">
-                <span className="font-semibold text-lg mb-3">
-                  Land Size :
-                </span>
+                <span className="font-semibold text-lg mb-3">Land Size :</span>
                 <p className="font-medium text-md border-none bg-slate-50 h-[50px] flex justify-start pl-2 items-center rounded-md hover:bg-lime-600 hover:text-white duration-500">
                   {userDetails?.farmerDetails?.farmSize}
                 </p>
@@ -114,15 +178,19 @@ export default function UserProfile() {
                   {userDetails?.farmerDetails?.cropsGrown}
                 </p>
               </div>
+
+              <div className="border-none bg-red-600 h-[50px] w-[100px] ">
+                <button>Sign out</button>
+              </div>
             </div>
-    
+
             {/* Right Side - Image */}
             <div className="flex-1">
               <div className="w-full h-[400px] rounded-lg overflow-hidden shadow-lg">
                 {userDetails?.farmerDetails?.landImage ? (
-                  <img 
-                    src={userDetails.farmerDetails.landImage} 
-                    alt="Farm Land" 
+                  <img
+                    src={userDetails.farmerDetails.landImage}
+                    alt="Farm Land"
                     className="w-full h-full object-cover"
                   />
                 ) : (
@@ -131,12 +199,24 @@ export default function UserProfile() {
                   </div>
                 )}
               </div>
+              <div className="flex flex-row gap-8">
+                <div>
+                  <button className="border-none bg-red-600 h-[50px] w-[150px] text-lg font-semibold text-white rounded-md hover:bg-red-400 duration-700">
+                    Sign out
+                  </button>
+                </div>
+                <div>
+                  <button className="border-none bg-green-600 h-[50px] w-[150px] text-lg font-semibold text-white rounded-md hover:opacity-80 duration-700 ">
+                    Update Profile
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       );
     }
-  }
+  };
   // end of the function
 
   return (
@@ -175,14 +255,18 @@ export default function UserProfile() {
           userDetails && (
             <div>
               <div className="flex flex-row ">
-                <div className="w-1/2 flex justify-end items-center text-center relative right-[100px] ">
+                <div className="w-1/2 flex justify-end items-center text-center relative right-[240px] ">
                   {/* image container  */}
                   <div className="border-none shadow-lg w-[300px] h-[300px] rounded-3xl bg-lime-400 duration-500 "></div>
+
+                  <div className="border h-[30px] w-[30px] rounded-full flex justify-center items-center bg-gray-500 text-white relative top-[150px] right-[10px] hover:bg-black duration-700">
+                    <FaPen />
+                  </div>
                 </div>
 
-                <div className=" p-4 rounded-md w-1/2 mr-[300px] ">
+                <div className=" p-4 rounded-md w-1/2 mr-[23px] ">
                   <p className="mb-5">
-                    <span className="font-bold text-3xl mt-[10px] ">
+                    <span className="font-bold text-3xl mt-[10px]">
                       General Info🌞
                     </span>
                   </p>

@@ -1,3 +1,4 @@
+
 import React from "react";
 import border from "../assets/border.png";
 import vec from "../assets/Vector.svg";
@@ -97,13 +98,13 @@ export default function About() {
             <div className="w-1/4 text-end">IMG</div>
             <div className="w-3/4 ">
               <h1 className="text-2xl font-mono text-emerald-700 text-start">
-                Subhadeep Das
+                Dasari Ranga Eswar 
               </h1>
               <p className="font-medium font-mono mt-3">
                 Hi i am Dasari Ranga Eshwar currently pursuing 3rd year B.E in
                 CSD,AIT.If you want to connect to me down below's link
               </p>
-              <a href="" className="font-mono text-blue-800">
+              <a href="https://www.linkedin.com/in/eshwar-roy-95559b272/" className="font-mono text-blue-800">
                 LinkedIn
               </a>
             </div>
