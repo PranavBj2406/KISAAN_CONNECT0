@@ -9,6 +9,24 @@ export default function UserProfile() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [aadharID, setAadharID] = useState(null);
+  const [image,setImage] = useState("")
+
+  const submitImage = () => {
+    const data = new FormData()
+    data.append("file", image)
+    data.append("upload_preset", "profile_picture_app")
+    data.append("cloud_name", "dntoevkln")
+  
+    fetch("/cloudinary/image/upload", {
+      method: "post",
+      body: data
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log('Upload successful:', data.secure_url);
+    })
+    .catch((err) => console.log(err))
+  }
 
   useEffect(() => {
     const getPersistedUserData = () => {
@@ -257,11 +275,12 @@ export default function UserProfile() {
               <div className="flex flex-row ">
                 <div className="w-1/2 flex justify-end items-center text-center relative right-[240px] ">
                   {/* image container  */}
+                    <input type="file" onChange={(e)=> setImage(e.target.files[0])}></input>
                   <div className="border-none shadow-lg w-[300px] h-[300px] rounded-3xl bg-lime-400 duration-500 "></div>
 
-                  <div className="border h-[30px] w-[30px] rounded-full flex justify-center items-center bg-gray-500 text-white relative top-[150px] right-[10px] hover:bg-black duration-700">
+                  <button onClick={submitImage} className="border h-[30px] w-[30px] rounded-full flex justify-center items-center bg-gray-500 text-white relative top-[150px] right-[10px] hover:bg-black duration-700">
                     <FaPen />
-                  </div>
+                  </button>
                 </div>
 
                 <div className=" p-4 rounded-md w-1/2 mr-[23px] ">
