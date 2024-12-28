@@ -60,7 +60,7 @@ export const signup = async (req, res, next) => {
     next(errorHandler(500, error.message));
   }
 };
-
+ 
 // signup  API
 
 export const signin = async (req, res, next) => {

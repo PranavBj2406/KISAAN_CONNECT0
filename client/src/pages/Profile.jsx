@@ -3,45 +3,53 @@ import axios from "axios";
 import ring from "../assets/vector.svg";
 import garden from "../assets/download.jpg";
 import { FaPen } from "react-icons/fa6";
+import { useRef } from "react";
+import { Check } from "lucide-react";
+import buyer from "../assets/buyer.mp4";
+import farmer from "../assets/farmer.mp4";
 
 export default function UserProfile() {
   const [userDetails, setUserDetails] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [aadharID, setAadharID] = useState(null);
-  const [image,setImage] = useState("")
+  const [image, setImage] = useState("");
+
+  const fileRef = useRef(null);
+
+  // function to submit profile picture to cloudinary
 
   const submitImage = () => {
-    const data = new FormData()
-    data.append("file", image)
-    data.append("upload_preset", "profile_picture_app")
-    data.append("cloud_name", "dntoevkln")
-  
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", "profile_picture_app");
+    data.append("cloud_name", "dntoevkln");
+
     fetch("/cloudinary/image/upload", {
       method: "post",
-      body: data
+      body: data,
     })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log('Upload successful:', data.secure_url);
-    })
-    .catch((err) => console.log(err))
-  }
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Upload successful:", data.secure_url);
+      })
+      .catch((err) => console.log(err));
+  };
 
   useEffect(() => {
     const getPersistedUserData = () => {
       try {
         // Parse the entire persisted root
         const persistedState = JSON.parse(localStorage.getItem("persist:root"));
-        console.log("Persisted State:", persistedState);
+        // console.log("Persisted State:", persistedState);
 
         // Parse the `user` key
         const userState = JSON.parse(persistedState.user);
-        console.log("User State:", userState);
+        // console.log("User State:", userState);
 
         // Access Aadhaar ID
         const aadharCard = userState.currentUser?.aadharCard;
-        console.log("Extracted Aadhaar ID:", aadharCard);
+        // console.log("Extracted Aadhaar ID:", aadharCard);
 
         return aadharCard;
       } catch (err) {
@@ -51,7 +59,7 @@ export default function UserProfile() {
     };
 
     const aadhar = getPersistedUserData();
-    console.log("Extracted Aadhaar ID:", aadhar);
+    // console.log("Extracted Aadhaar ID:", aadhar);
     setAadharID(aadhar);
   }, []);
 
@@ -72,7 +80,7 @@ export default function UserProfile() {
         const response = await axios.get(
           `http://localhost:3000/api/user/${aadharID}`
         );
-        console.log("API Response:", response.data);
+        // console.log("API Response:", response.data);
         setUserDetails(response.data);
       } catch (err) {
         console.error("Fetch error:", err);
@@ -86,6 +94,8 @@ export default function UserProfile() {
       fetchUserDetails();
     }
   }, [aadharID]);
+
+  // function to show submit button
 
   // function to render user specific details taking occupation as an criteria
 
@@ -104,7 +114,7 @@ export default function UserProfile() {
                 <span className="font-semibold text-lg mb-3">
                   Address Details:
                 </span>
-                <p className="font-medium text-md border-none bg-slate-50 h-[50px] flex justify-start pl-2 items-center rounded-md hover:bg-lime-600 hover:text-white duration-500">
+                <p className="font-medium text-md border-none bg-slate-50 h-[50px]  flex justify-start pl-2 items-center rounded-md hover:bg-lime-600 hover:text-white duration-500">
                   {userDetails.address}
                 </p>
               </div>
@@ -135,30 +145,19 @@ export default function UserProfile() {
               </div>
             </div>
 
-            {/* Right Side - Image */}
             <div className="flex-1">
               <div className="w-full h-[400px] rounded-lg overflow-hidden shadow-lg">
-                {userDetails?.farmerDetails?.landImage ? (
-                  <img
-                    src={userDetails.farmerDetails.landImage}
-                    alt="Farm Land"
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-slate-200 flex items-center justify-center">
-                    No Image Available
-                  </div>
-                )}
-              </div>
-
-              <div className="flex flex-row">
-                <div>
-                  <button className="border-none h-[50px] w-[200px] bg-slate-300 mt-6 rounded-lg font-semibold text-lg ">
-                    Upload Images
-                  </button>
+                <div className="w-full h-full bg-slate-200 flex items-center justify-center">
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    className="w-full h-full object-cover pointer-events-none"
+                  >
+                    <source src={buyer} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
                 </div>
-
-                <input type="file"></input>
               </div>
             </div>
           </div>
@@ -197,26 +196,6 @@ export default function UserProfile() {
                 </p>
               </div>
 
-              <div className="border-none bg-red-600 h-[50px] w-[100px] ">
-                <button>Sign out</button>
-              </div>
-            </div>
-
-            {/* Right Side - Image */}
-            <div className="flex-1">
-              <div className="w-full h-[400px] rounded-lg overflow-hidden shadow-lg">
-                {userDetails?.farmerDetails?.landImage ? (
-                  <img
-                    src={userDetails.farmerDetails.landImage}
-                    alt="Farm Land"
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-slate-200 flex items-center justify-center">
-                    No Image Available
-                  </div>
-                )}
-              </div>
               <div className="flex flex-row gap-8">
                 <div>
                   <button className="border-none bg-red-600 h-[50px] w-[150px] text-lg font-semibold text-white rounded-md hover:bg-red-400 duration-700">
@@ -230,8 +209,28 @@ export default function UserProfile() {
                 </div>
               </div>
             </div>
+
+            {/* Right Side - Image */}
+            <div className="flex-1">
+              <div className="w-full h-[400px] rounded-lg overflow-hidden shadow-lg">
+                <div className="w-full h-full bg-slate-200 flex items-center justify-center">
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    className="w-full h-full object-cover pointer-events-none"
+                  >
+                    <source src={farmer} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </div>
+            </div>
+
+              
+            </div>
           </div>
-        </div>
+        
       );
     }
   };
@@ -262,7 +261,7 @@ export default function UserProfile() {
         </div>
       </div>
 
-      <div className="p-6 w-11/12 h-auto mx-auto bg-white shadow-lg rounded-lg hover:shadow-xl duration-500 mt-10">
+      <div className="p-6 w-11/12 h-auto mx-auto bg-white shadow-lg rounded-lg hover:shadow-xl hover:shadow-lime-500 duration-500 mt-10">
         {loading ? (
           <p className="text-blue-500">Loading...</p>
         ) : error ? (
@@ -273,15 +272,7 @@ export default function UserProfile() {
           userDetails && (
             <div>
               <div className="flex flex-row ">
-                <div className="w-1/2 flex justify-end items-center text-center relative right-[240px] ">
-                  {/* image container  */}
-                    <input type="file" onChange={(e)=> setImage(e.target.files[0])}></input>
-                  <div className="border-none shadow-lg w-[300px] h-[300px] rounded-3xl bg-lime-400 duration-500 "></div>
-
-                  <button onClick={submitImage} className="border h-[30px] w-[30px] rounded-full flex justify-center items-center bg-gray-500 text-white relative top-[150px] right-[10px] hover:bg-black duration-700">
-                    <FaPen />
-                  </button>
-                </div>
+               
 
                 <div className=" p-4 rounded-md w-1/2 mr-[23px] ">
                   <p className="mb-5">
@@ -291,10 +282,10 @@ export default function UserProfile() {
                   </p>
 
                   <div className="flex flex-row mb-3">
-                    <span className="font-semibold text-xl mt-[10px]">
+                    <span className="font-semibold text-xl mt-[10px] ">
                       Name :
                     </span>
-                    <p className="font-medium text-lg border-none bg-slate-50 w-[286px] h-[50px] flex justify-center items-center rounded-md ml-[10px] hover:bg-lime-600 hover:text-white duration-500 ">
+                    <p className="font-medium text-lg border-none text-gray-600 bg-slate-50 w-[286px] h-[50px] flex justify-center items-center rounded-md ml-[10px] hover:bg-lime-600 hover:text-white duration-500 ">
                       {userDetails.username}
                     </p>
                   </div>
@@ -302,7 +293,7 @@ export default function UserProfile() {
                     <span className="font-semibold text-xl mt-[10px]">
                       Occuption :
                     </span>
-                    <p className="font-medium text-lg border-none bg-slate-50 w-[240px] h-[50px] flex justify-center items-center rounded-md ml-[10px] hover:bg-lime-600 hover:text-white duration-500">
+                    <p className="font-medium text-lg border-none text-gray-600  bg-slate-50 w-[240px] h-[50px] flex justify-center items-center rounded-md ml-[10px] hover:bg-lime-600 hover:text-white duration-500">
                       {userDetails.occupation}
                     </p>
                   </div>
@@ -311,7 +302,7 @@ export default function UserProfile() {
                     <span className="font-semibold text-xl mt-[10px]">
                       Gender :
                     </span>
-                    <p className="font-medium text-lg border-none bg-slate-50 w-[270px] h-[50px] flex justify-center items-center rounded-md ml-[10px] hover:bg-lime-600 hover:text-white duration-500">
+                    <p className="font-medium text-lg border-none text-gray-600 bg-slate-50 w-[270px] h-[50px] flex justify-center items-center rounded-md ml-[10px] hover:bg-lime-600 hover:text-white duration-500">
                       {userDetails.gender}
                     </p>
                   </div>
@@ -319,10 +310,39 @@ export default function UserProfile() {
                     <span className="font-semibold text-xl mt-[10px]">
                       Contact info:
                     </span>
-                    <p className="font-medium text-lg border-none bg-slate-50 w-[223px] h-[50px] flex justify-center items-center rounded-md ml-[10px] hover:bg-lime-600 hover:text-white duration-500">
+                    <p className="font-medium text-lg border-none text-gray-600 bg-slate-50 w-[223px] h-[50px] flex justify-center items-center rounded-md ml-[10px] hover:bg-lime-600 hover:text-white duration-500">
                       {userDetails.phoneNumber}
                     </p>
                   </div>
+                </div>
+
+
+                <div className="w-1/2 flex justify-end items-center text-center relative right-[220px] ">
+                  {/* image container  */}
+                  <input
+                    type="file"
+                    hidden
+                    accept="image/*"
+                    ref={fileRef}
+                    onChange={(e) => setImage(e.target.files[0])}
+                  ></input>
+                  <img
+                    src="https://res.cloudinary.com/dntoevkln/image/upload/v1735363220/mumuj6kkxf062nbkh7xi.jpg"
+                    className="border-none shadow-xl w-[300px] h-[300px] rounded-3xl bg-lime-400 duration-500  hover:shadow-xl hover:shadow-lime-100"
+                  ></img>
+
+                  <button
+                    onClick={() => fileRef.current.click()}
+                    className="border h-[40px] w-[40px] rounded-full flex justify-center items-center bg-gray-500 text-white relative top-[165px] right-[20px] hover:bg-black duration-700"
+                  >
+                    <FaPen />
+                  </button>
+                  <button
+                    onClick={submitImage}
+                    className="border h-[40px] w-[40px] rounded-full flex justify-center items-center bg-blue-500 text-white relative top-[120px] right-[35px] hover:bg-black duration-700"
+                  >
+                    <Check />
+                  </button>
                 </div>
               </div>
               {/* User Specific details */}
