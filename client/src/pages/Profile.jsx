@@ -15,25 +15,148 @@ export default function UserProfile() {
   const [aadharID, setAadharID] = useState(null);
   const [image, setImage] = useState("");
 
+
   const fileRef = useRef(null);
 
   // function to submit profile picture to cloudinary
 
-  const submitImage = () => {
+
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      setImage(selectedFile);
+      console.log("Selected File:", selectedFile);
+    }
+  };
+  
+  const UploadButton = () => {
+    const [isHovered, setIsHovered] = useState(false);
+    const fileRef = useRef(null);
+
+    const handleMouseEnter = () => setIsHovered(true);
+    const handleMouseLeave = () => setIsHovered(false);
+
+    const handleFileUpload = () => {
+      if (fileRef.current) {
+        fileRef.current.click();
+      }
+    };
+
+    return (
+      <div>
+        <input
+          type="file"
+          ref={fileRef}
+          style={{ display: "none" }}
+          accept="image/*"
+          onChange={handleFileChange}
+        />
+        <button
+          onClick={handleFileUpload}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className={`border h-[45px] rounded-full flex items-center bg-gray-500 text-white relative top-[-30px] right-[-10px] duration-700 overflow-hidden ${
+            isHovered ? "w-[200px] pl-3 bg-black" : "w-[45px] justify-center"
+          }`}
+        >
+          <FaPen className="w-[23px] transition-opacity duration-500" />
+          {isHovered && (
+            <span className="ml-2 transition-all duration-500">
+              Upload Image
+            </span>
+          )}
+        </button>
+
+        {/* Hidden File Input */}
+      </div>
+    );
+  };
+  const SubmitButton = () => {
+    const [isHovered1, setIsHovered1] = useState(false);
+
+    const handleMouseEnter1 = () => setIsHovered1(true);
+    const handleMouseLeave1 = () => setIsHovered1(false);
+
+    return (
+      <button
+        onClick={submitImage}
+        onMouseEnter={handleMouseEnter1}
+        onMouseLeave={handleMouseLeave1}
+        className={`border h-[45px] rounded-full flex justify-center items-center bg-blue-600 text-white relative top-[70px] right-[34px] hover:bg-blue-500 duration-700 ${
+          isHovered1 ? "w-[200px] pr-1 justify-start" : "w-[45px] justify-center"
+        }`}
+      >
+        <Check className="w-[23px]" />
+        {isHovered1 && (
+          <span className="ml-2 transition-all duration-500">Submit Image</span>
+        )}
+      </button>
+    );
+  };
+
+  const submitImage = async () => {
+    if (!image) {
+      alert("No image selected");
+      return;
+    }
+
     const data = new FormData();
     data.append("file", image);
     data.append("upload_preset", "profile_picture_app");
     data.append("cloud_name", "dntoevkln");
 
-    fetch("/cloudinary/image/upload", {
-      method: "post",
-      body: data,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Upload successful:", data.secure_url);
-      })
-      .catch((err) => console.log(err));
+    try {
+      // Upload image to Cloudinary
+      const cloudRes = await fetch(
+        "https://api.cloudinary.com/v1_1/dntoevkln/image/upload",
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+
+      if (!cloudRes.ok) {
+        throw new Error(
+          `Cloudinary upload failed with status ${cloudRes.status}`
+        );
+      }
+
+      const cloudData = await cloudRes.json();
+
+      if (!cloudData.secure_url) {
+        throw new Error("Cloudinary response did not include a secure_url");
+      }
+
+      console.log("Image uploaded successfully:", cloudData.secure_url);
+
+      // Update profile in the database
+      const updateRes = await axios.patch(
+        `http://localhost:3000/api/auth/profile-picture`,
+        { profilePicture: cloudData.secure_url },
+        {
+          withCredentials: true,
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+      
+      
+      // Debug response
+      console.log('Response:', updateRes);
+
+      if (updateRes.status === 200) {
+        alert("Profile picture updated successfully refresh the page to view changes");
+      } else {
+        console.error(
+          "Failed to update profile picture in the database:",
+          updateRes.statusText
+        );
+      }
+    } catch (err) {
+      console.error('Axios error:', err.response?.data || err.message);
+  throw err;
+    }
   };
 
   useEffect(() => {
@@ -226,11 +349,8 @@ export default function UserProfile() {
                 </div>
               </div>
             </div>
-
-              
-            </div>
           </div>
-        
+        </div>
       );
     }
   };
@@ -272,8 +392,6 @@ export default function UserProfile() {
           userDetails && (
             <div>
               <div className="flex flex-row ">
-               
-
                 <div className=" p-4 rounded-md w-1/2 mr-[23px] ">
                   <p className="mb-5">
                     <span className="font-bold text-3xl mt-[10px]">
@@ -316,8 +434,7 @@ export default function UserProfile() {
                   </div>
                 </div>
 
-
-                <div className="w-1/2 flex justify-end items-center text-center relative right-[220px] ">
+                <div className="w-1/2 flex justify-end items-center text-center relative right-[354px] ">
                   {/* image container  */}
                   <input
                     type="file"
@@ -327,22 +444,13 @@ export default function UserProfile() {
                     onChange={(e) => setImage(e.target.files[0])}
                   ></input>
                   <img
-                    src="https://res.cloudinary.com/dntoevkln/image/upload/v1735363220/mumuj6kkxf062nbkh7xi.jpg"
-                    className="border-none shadow-xl w-[300px] h-[300px] rounded-3xl bg-lime-400 duration-500  hover:shadow-xl hover:shadow-lime-100"
+                    src={userDetails.profilePicture}
+                    className="border-black shadow-xl w-[300px] h-[300px] rounded-xl bg-lime-400 duration-500  hover:shadow-xl hover:shadow-lime-100"
                   ></img>
 
-                  <button
-                    onClick={() => fileRef.current.click()}
-                    className="border h-[40px] w-[40px] rounded-full flex justify-center items-center bg-gray-500 text-white relative top-[165px] right-[20px] hover:bg-black duration-700"
-                  >
-                    <FaPen />
-                  </button>
-                  <button
-                    onClick={submitImage}
-                    className="border h-[40px] w-[40px] rounded-full flex justify-center items-center bg-blue-500 text-white relative top-[120px] right-[35px] hover:bg-black duration-700"
-                  >
-                    <Check />
-                  </button>
+                  <UploadButton />
+
+                  <SubmitButton />
                 </div>
               </div>
               {/* User Specific details */}
