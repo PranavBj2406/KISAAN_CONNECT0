@@ -7,6 +7,9 @@ import { useRef } from "react";
 import { Check } from "lucide-react";
 import buyer from "../assets/buyer.mp4";
 import farmer from "../assets/farmer.mp4";
+import {signOutFailure, signOutStart, signOutSuccess } from "../redux/user/userSlice";
+import {useDispatch} from "react-redux"
+import {useNavigate} from "react-router-dom"
 
 export default function UserProfile() {
   const [userDetails, setUserDetails] = useState(null);
@@ -14,12 +17,11 @@ export default function UserProfile() {
   const [loading, setLoading] = useState(true);
   const [aadharID, setAadharID] = useState(null);
   const [image, setImage] = useState("");
-
+  const navigate = useNavigate();
 
   const fileRef = useRef(null);
 
   // function to submit profile picture to cloudinary
-
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -28,7 +30,7 @@ export default function UserProfile() {
       console.log("Selected File:", selectedFile);
     }
   };
-  
+
   const UploadButton = () => {
     const [isHovered, setIsHovered] = useState(false);
     const fileRef = useRef(null);
@@ -83,7 +85,9 @@ export default function UserProfile() {
         onMouseEnter={handleMouseEnter1}
         onMouseLeave={handleMouseLeave1}
         className={`border h-[45px] rounded-full flex justify-center items-center bg-blue-600 text-white relative top-[70px] right-[34px] hover:bg-blue-500 duration-700 ${
-          isHovered1 ? "w-[200px] pr-1 justify-start" : "w-[45px] justify-center"
+          isHovered1
+            ? "w-[200px] pr-1 justify-start"
+            : "w-[45px] justify-center"
         }`}
       >
         <Check className="w-[23px]" />
@@ -136,17 +140,18 @@ export default function UserProfile() {
         {
           withCredentials: true,
           headers: {
-            'Content-Type': 'application/json'
-          }
+            "Content-Type": "application/json",
+          },
         }
       );
-      
-      
+
       // Debug response
-      console.log('Response:', updateRes);
+      console.log("Response:", updateRes);
 
       if (updateRes.status === 200) {
-        alert("Profile picture updated successfully refresh the page to view changes");
+        alert(
+          "Profile picture updated successfully refresh the page to view changes"
+        );
       } else {
         console.error(
           "Failed to update profile picture in the database:",
@@ -154,8 +159,8 @@ export default function UserProfile() {
         );
       }
     } catch (err) {
-      console.error('Axios error:', err.response?.data || err.message);
-  throw err;
+      console.error("Axios error:", err.response?.data || err.message);
+      throw err;
     }
   };
 
@@ -218,10 +223,41 @@ export default function UserProfile() {
     }
   }, [aadharID]);
 
-  // function to show submit button
+  // function for sign out :)
 
+  const dispatch = useDispatch();
+  const handleSignOut = async () => {
+    try {
+      dispatch(signOutStart());
+      const res = await fetch('http://localhost:3000/api/auth/signout', {
+        method: 'GET', 
+      });
+  
+      console.log('SignOut Response:', res);
+  
+      if (!res.ok) {
+        const errorText = await res.text(); // Read the error text if the response isn't ok
+        throw new Error(`SignOut Failed: ${errorText}`);
+      }
+  
+      const data = await res.json(); // Only read JSON once
+      console.log('SignOut Data:', data);
+  
+      if (!data.success) {
+        console.log('SignOut Failed:', data.message);
+        dispatch(signOutFailure(data.message));
+        return;
+      }
+      dispatch(signOutSuccess());
+      navigate('/signin');
+    } catch (error) {
+      console.log('SignOut Error:', error.message);
+      dispatch(signOutFailure(error.message));
+    }
+  };
+  
+  
   // function to render user specific details taking occupation as an criteria
-
   const RenderOccupationSpecificDetails = () => {
     if (!userDetails || !userDetails.occupation) return null;
 
@@ -258,11 +294,6 @@ export default function UserProfile() {
                 <div>
                   <button className="border-none bg-red-600 h-[50px] w-[150px] text-lg font-semibold text-white rounded-md hover:bg-red-400 duration-700">
                     Sign out
-                  </button>
-                </div>
-                <div>
-                  <button className="border-none bg-green-600 h-[50px] w-[150px] text-lg font-semibold text-white rounded-md hover:opacity-80 duration-700 ">
-                    Update Profile
                   </button>
                 </div>
               </div>
@@ -321,13 +352,8 @@ export default function UserProfile() {
 
               <div className="flex flex-row gap-8">
                 <div>
-                  <button className="border-none bg-red-600 h-[50px] w-[150px] text-lg font-semibold text-white rounded-md hover:bg-red-400 duration-700">
+                  <button onClick={handleSignOut} className="border-none bg-red-600 h-[50px] w-[150px] text-lg font-semibold text-white rounded-md hover:bg-red-400 duration-700">
                     Sign out
-                  </button>
-                </div>
-                <div>
-                  <button className="border-none bg-green-600 h-[50px] w-[150px] text-lg font-semibold text-white rounded-md hover:opacity-80 duration-700 ">
-                    Update Profile
                   </button>
                 </div>
               </div>
