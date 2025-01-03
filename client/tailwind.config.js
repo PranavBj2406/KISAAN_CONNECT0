@@ -8,7 +8,8 @@ export default {
     extend: {
       fontFamily:{
         sans:['Poppins','sans-serif'],
-        montserrat:['Montserrat','sans-serif']
+        montserrat:['Montserrat','sans-serif'],
+        urbanist:['Urbanist','sans-serif'],
       },
     },
   },

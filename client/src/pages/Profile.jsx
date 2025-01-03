@@ -292,7 +292,7 @@ export default function UserProfile() {
 
               <div className="flex flex-row gap-8">
                 <div>
-                  <button className="border-none bg-red-600 h-[50px] w-[150px] text-lg font-semibold text-white rounded-md hover:bg-red-400 duration-700">
+                  <button onClick={handleSignOut} className="border-none bg-red-600 h-[50px] w-[150px] text-lg font-semibold text-white rounded-full hover:bg-red-400 duration-700">
                     Sign out
                   </button>
                 </div>
@@ -352,7 +352,7 @@ export default function UserProfile() {
 
               <div className="flex flex-row gap-8">
                 <div>
-                  <button onClick={handleSignOut} className="border-none bg-red-600 h-[50px] w-[150px] text-lg font-semibold text-white rounded-md hover:bg-red-400 duration-700">
+                  <button onClick={handleSignOut} className="border-none bg-red-600 h-[50px] w-[150px] text-lg font-semibold text-white rounded-full hover:bg-red-400 duration-700">
                     Sign out
                   </button>
                 </div>

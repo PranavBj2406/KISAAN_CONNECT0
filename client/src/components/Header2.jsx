@@ -3,6 +3,7 @@ import KissanConnect from "../assets/icon 2.jpg";
 import { Link } from "react-router-dom";
 import profile from "../assets/profile icon.svg";
 import chat from "../assets/chat.svg";
+import { SearchX } from "lucide-react";
 
 export default function Header() {
   return (
@@ -20,6 +21,17 @@ export default function Header() {
             className="flex  flex-
           row gap-7 font-semibold font-poppins justify-end pr-9"
           >
+            {/* search bar component */}
+            <div className="relative right-[465px]">
+            <div className="relative flex items-center max-w-sm">
+              <input
+                placeholder="Search"
+                className="w-full h-12 pl-12 pr-4 rounded-full bg-lime-400 border-orange-100 border shadow-md placeholder-black"
+                />
+              <SearchX className="absolute left-4 text-black" />
+            </div>
+              </div>
+
             <div className="relative group">
               <Link to="/profile" className="">
                 <img
