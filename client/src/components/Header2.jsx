@@ -7,7 +7,7 @@ import { SearchX } from "lucide-react";
 
 export default function Header() {
   return (
-    <div className="bg-white shadow-xl">
+    <div className="bg-white shadow-xl z-50 ">
       <div className="flex justify-between items-center mx-auto p-4">
         <Link to="/dashboard">
           <img

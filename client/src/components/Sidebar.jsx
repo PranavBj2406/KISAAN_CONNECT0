@@ -20,7 +20,11 @@ export default function SideBar({ children }) {
   const [expanded, setExpanded] = useState(true);
   return (
     <aside className="min-h-screen">
-      <nav className="h-full flex flex-col border border-none shadow-2xl shadow-lime-600">
+<nav
+        className={`h-full ${
+          expanded ? "w-[280px]" : "w-[80px]"
+        } bg-white bg-opacity-90 shadow-2xl shadow-black z-50 backdrop-blur-md relative transition-all duration-300`}
+      >
         {/* top overview and button section */}
         <div className="p-6 pb-2 flex justify-between items-center border-b-2 shadow-md h-20">
           <span
