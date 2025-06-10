@@ -50,30 +50,7 @@ export default function SideBar({ children }) {
             {children}
           </ul>
         </SidebarContext.Provider>
-
-        <div className="border-t flex p-3">
-          <img
-            src="https://cdn-icons-png.flaticon.com/128/188/188333.png"
-            alt=""
-            className="w-[40px] h-[40px]"
-          ></img>
-
-          <div
-            className={`flex justify-between items-center overflow-hidden transition-all ${
-              expanded ? "w-52" : "w-0"
-            }`}
-          >
-            <div className="leading-4">
-              <h4 className="font-semibold">xyz</h4>
-              <span className="text-xs text-gray-600">xyz@gmail.com</span>
-            </div>
-            <div className="border-none ">
-            <Link to='/profile'>
-            <MoreVertical size={20} className="relative left-2" />
-            </Link>
-            </div>
-          </div>
-        </div>
+        
       </nav>
     </aside>
   );
