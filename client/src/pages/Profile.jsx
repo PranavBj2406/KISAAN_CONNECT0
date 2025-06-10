@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import ring from "../assets/vector.svg";
+import ring from "../assets/Vector.svg";
 import garden from "../assets/download.jpg";
 import { FaPen } from "react-icons/fa6";
 import { useRef } from "react";
