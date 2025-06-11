@@ -7,8 +7,8 @@ import csvToJson from 'csvtojson';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Define paths
-const csvFilePath = join(__dirname, '35985678-0d79-46b4-9ed6-6f13308a1d24_67a6ee748c4d0c2354a6c3b074c0fe3a.csv');
-const jsonOutputPath = join(__dirname, '..', 'data', 'priceData.json');
+const csvFilePath = join(__dirname, 'cabbage.csv');
+const jsonOutputPath = join(__dirname, '..', 'data', 'priceDataCabbage.json');
 
 // Ensure output directory exists
 const outputDir = dirname(jsonOutputPath);
