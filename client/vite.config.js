@@ -1,6 +1,9 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export default defineConfig({
   plugins: [react()],
@@ -16,7 +19,7 @@ export default defineConfig({
         secure: false,
       },
       "/cloudinary": {
-        target: "https://api.cloudinary.com/v1_1/dntoevkln",
+        target: process.env.VITE_CLOUD_API ,
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/cloudinary/, "")
       }
