@@ -18,6 +18,7 @@
     "cloudinary-react": "^1.8.1",
     "clsx": "^2.1.1",
     "csvtojson": "^2.0.10",
+    "dotenv": "^17.1.0",
     "firebase": "^11.1.0",
     "lucide-react": "^0.461.0",
     "moment": "^2.29.4",
